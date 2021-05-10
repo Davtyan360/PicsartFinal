@@ -1,0 +1,9 @@
+<div class="right">
+
+    <from id="regDiv" [formGroup]="form" (ngSubmit)="submit()">
+        <p>Please Enter Url</p>
+        <input type="text" placeholder="Url" formControlName="url" [(ngModel)]="url">
+        <button (click)="subButton()" [disabled]="form.invalid">Submit</button>
+        <p>{{shortUrl}}</p>
+    </from>
+</div>
