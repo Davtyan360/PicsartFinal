@@ -1,0 +1,23 @@
+<div class="full">
+    <div class="left">
+       
+        <div id="hDiv">
+            <h1>Wellcome to Shortttt</h1>
+            <p>This is Yura's and Gohar's final project</p>
+        </div>
+        <div id="aDiv">
+            <button (click)="clickFunc()">Login</button>
+        </div>
+    </div>
+    <div class="right">
+
+        <from id="regDiv" [formGroup]="form" (ngSubmit)="submit()">
+            <p>Create a page</p>
+            <input type="text" placeholder="Name" formControlName="name" [(ngModel)]="name">
+            <input type="text" placeholder="Email" formControlName="email" [(ngModel)]="email">
+            <input type="password" placeholder="Password" formControlName="password" [(ngModel)]="password">
+            <button (click)="subButton()" [disabled]="form.invalid">Submit</button>
+        </from>
+        
+    </div>
+</div>
