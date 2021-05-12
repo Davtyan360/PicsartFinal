@@ -16,7 +16,8 @@ let dataSchema = mongoose.Schema({
   count:{
     type: Number,
     required:true,
+  
   }
 });
-
+dataSchema.index({count: 1});
 module.exports = mongoose.model("Data", dataSchema);
