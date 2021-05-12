@@ -8,6 +8,8 @@ const client = redis.createClient();
 const Data = require("../model/Data");
 const User = require("../model/User");
 
+const db_ctrl = require("../controllers/db-controller")
+
 client.on("connect", async () => {
 
   let count = await Data.countDocuments({});
@@ -25,13 +27,10 @@ client.on("connect", async () => {
 router.get("/:shortUrl", (req, res) => {
   client.get(req.params.shortUrl, (err, data) => {
     if(err) res.status(404).send(err);
-    
+
     if(data) res.status(200).send({ url: data });
 
-    Data.findOne({"shortURL": req.params.shortUrl}, (err, element)=>{
-      if(err) res.status(404).send(err);
-      if(element) res.status(200).send({ url: element });
-    });
+    db_ctrl.checkDB(req,res);
     
   });
 });
