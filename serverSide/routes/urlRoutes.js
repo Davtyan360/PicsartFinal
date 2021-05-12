@@ -9,12 +9,17 @@ const Data = require("../model/Data");
 const User = require("../model/User");
 
 client.on("connect", async () => {
-  await Data.find({}, (err, users) => {
+
+  let count = await Data.countDocuments({});
+  let limit = Math.ceil(0.2*count);
+
+  await Data.find().sort({"count" : 1}).limit(limit).exec((err, users)=>{
     if (err) return;
     users.forEach((element) => {
       client.set(element.shortURL, element.longURL);
     });
-  });
+  })
+ 
 });
 
 router.get("/:shortUrl", (req, res) => {
