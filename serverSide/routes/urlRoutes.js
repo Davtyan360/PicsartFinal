@@ -24,7 +24,15 @@ client.on("connect", async () => {
 
 router.get("/:shortUrl", (req, res) => {
   client.get(req.params.shortUrl, (err, data) => {
-    res.send({ url: data });
+    if(err) res.status(404).send(err);
+    
+    if(data) res.status(200).send({ url: data });
+
+    Data.findOne({"shortURL": req.params.shortUrl}, (err, element)=>{
+      if(err) res.status(404).send(err);
+      if(element) res.status(200).send({ url: element });
+    });
+    
   });
 });
 
@@ -40,6 +48,7 @@ router.post("/api/:id/longUrl", (req, res) => {
   updateUserDataID(req.params.id, newData._id);
   res.send({ shortUrl: shortid });
 });
+
 async function updateUserDataID(id, newID) {
   const user = await User.findOne({ _id: id });
   user.dataID.push(newID);
