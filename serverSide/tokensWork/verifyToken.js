@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/User");
 
 module.exports = function (req, res, next) {
-  const authcookie = process.env.authtoken;
+  const authcookie = req.cookies["Auth"] || null;
   if (!authcookie) return res.status(401).send("You are not in account");
   try {
     jwt.verify(authcookie, process.env.JWT_SECRET, async (err, user) => {

@@ -12,7 +12,9 @@ export class MainComponent implements OnInit {
 
 
   form: FormGroup;
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
+    this.paiginFunc();
+  }
   ngOnInit(): void {
     //Check our Name and Mail and  Password
     this.form = new FormGroup({
@@ -24,6 +26,10 @@ export class MainComponent implements OnInit {
   }
   url: String;
   shortUrl: String;
+  min: number = 0;
+  max: number = this.min + 10;
+  count: number = 50;
+  posts = []
   submit() { }
   subButton() {
     const body = { url: this.url };
@@ -32,5 +38,24 @@ export class MainComponent implements OnInit {
       error => { console.log(error); }
     );
   }
-
+  paiginFunc() {
+    this.http.get(`http://localhost:3000/users/allPosts/${this.route.snapshot.params['id']}/count?page1=${this.min == 0 ? this.min : this.min / 10}&limit1=10`).subscribe((data: any) => {
+      this.count = data.count;
+      this.posts = data.arr;
+    });
+  }
+  incrFunc() {
+    if (!(this.min <= 0)) {
+      this.min -= 10
+      this.max = this.min + 10;
+      this.paiginFunc();
+    }
+  }
+  decrFunc() {
+    if (this.max < this.count) {
+      this.min += 10;
+      this.max = this.min + 10;
+      this.paiginFunc();
+    }
+  }
 }

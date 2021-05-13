@@ -1,7 +1,8 @@
 .right {
   background-image: linear-gradient(#3b3251, #333356);
   width: 100%;
-  height: 100vh;
+  height: 250vh;
+  overflow-y: hidden;
 }
 
 #hDiv {
@@ -18,13 +19,13 @@
 }
 
 #regDiv {
-  position: fixed;
+  position: absolute;
   width: 25%;
-  height: 50%;
+  height: 35%;
   left: 30%;
   top: 15%;
   border: 1px solid #fff;
-  padding-top: 10%;
+  padding-top: 7%;
   padding-left: 5%;
   padding-right: 5%;
 }
@@ -71,7 +72,6 @@
   font-size: 200%;
   color: #fff;
 }
-
 #regDiv button {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   width: 80px;
@@ -81,4 +81,45 @@
   color: #fff;
   padding: 7px 0;
   background: transparent;
+}
+
+#pagination {
+  position: absolute;
+  left: 38%;
+  top: 70%;
+}
+#pagination button {
+  display: inline-block;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  width: 80px;
+  border: 2px solid #fff;
+  outline: 0;
+  font-size: 1.8rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+}
+#pagination p {
+  display: inline;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 200%;
+  color: #fff;
+}
+.forDiv {
+  position: relative;
+  top: 100%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 100%;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 15px;
+  max-width: 33%;
+  height: auto;
+  overflow:hidden;
+  margin-bottom: 5px;
+}
+#postsDiv {
+  position: relative;
+  top: 35%;
+  left: 30%;
 }
