@@ -36,7 +36,8 @@ router.post("/login", async (req, res) => {
   const isTruePass = await bcript.compare(req.body.password, user.password);
   if (!isTruePass) return res.status(400).send("Password was wrong");
   const token = jwt.sign({ ...user._doc }, process.env.JWT_SECRET);
-  process.env.authtoken = token;
+  await res.cookie("Auth", token, { httpOnly: true, secure: false });
+  //console.log(req.cookies["Auth"]);
   res.send({ id: user._id });
 });
 

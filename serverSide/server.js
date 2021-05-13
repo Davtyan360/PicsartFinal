@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const cookie = require("cookie-parser");
 
 const app = express();
 
@@ -11,7 +12,7 @@ const tokenw = require("./tokensWork/verifyToken");
 const userPosts = require("./routes/userPosts");
 
 app.use(cors({ origin: true, credentials: true }));
-
+app.use(cookie());
 app.use(express.json());
 
 connections.connect(app);

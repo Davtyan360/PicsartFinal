@@ -1,0 +1,21 @@
+<div class="right">
+
+    <from id="regDiv" [formGroup]="form" (ngSubmit)="submit()">
+        <p>Please Enter Url</p>
+        <input type="text" placeholder="Url" formControlName="url" [(ngModel)]="url">
+        <button (click)="subButton()" [disabled]="form.invalid">Submit</button>
+        <p>{{shortUrl}}</p>
+    </from>
+    <div id="pagination">
+        <button class="buttonStyle" (click)="incrFunc()">-</button>
+        <p> {{min}} - {{max}} </p>
+        <button class="buttonStyle" (click)="decrFunc()">+</button>
+    </div>
+    <div id="postsDiv">
+        <div *ngFor="let item of posts" class="forDiv">
+            <p>short url = {{item.shortUrl}}</p>
+            <p>url = {{item.longUrl}}</p>
+        </div>
+    </div>
+    
+</div>
