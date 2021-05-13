@@ -82,6 +82,7 @@
   padding: 7px 0;
   background: transparent;
 }
+
 #pagination {
   position: absolute;
   left: 38%;
@@ -122,4 +123,3 @@
   top: 35%;
   left: 30%;
 }
-

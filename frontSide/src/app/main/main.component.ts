@@ -31,7 +31,6 @@ export class MainComponent implements OnInit {
   count: number = 50;
   posts = []
   submit() { }
-
   subButton() {
     const body = { url: this.url };
     this.http.post<any>(`http://localhost:3000/api/${this.route.snapshot.params['id']}/longUrl`, body).subscribe(
@@ -59,5 +58,4 @@ export class MainComponent implements OnInit {
       this.paiginFunc();
     }
   }
-
 }
